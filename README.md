@@ -111,6 +111,18 @@ Proje başlangıç aşamasındadır.
 
 ### Day 2
 
+#### Tamamlananlar 
+
+- [x] Docker Compose altyapısı oluşturuldu.
+- [x] Nginx, PHP-FPM ve PostgreSQL servisleri ayağa kaldırıldı.
+- [x] Docker ağı `mvc-net`oluşturuldu.
+- [x] Named Volume ve bind mount yapısı oluşturuldu.
+- [x] Nginx FASTCGI yapılandırıldı.
+- [x] PHP geliştirme ayarları `php.ini` projeye eklendi.
+- [x] Ortam değişkenleri `.env` kullanılmaya başlandı.
+- [x] PHP ile PostgreSQL arasında PDO bağlantısı doğrulandı.
+- [x] İlk SQL sorgusu `SELECT version()` başarı ile çalıştırıldı.
+
 #### Öğrendiklerim 
 
 - Docker Compose ile birden fazla servis birlikte tanımlanabilir.
@@ -122,6 +134,9 @@ Proje başlangıç aşamasındadır.
 - `docker-compose config`ile Compos dosyasının geçerliliği kontol edilebilir.
 - Nginx web kökü yalnızca `public/`dizini olmalıdır.
 - Nginx `location` blokları ilgili `server`blogunun içinde bulunmalıdır. 
+- PDO ile PostgreSQL bağlantısı. ENV kullanımı.
+- FastCGI'nin çalışma mantığı
+
 
 #### Kararlar
 
@@ -135,4 +150,6 @@ Proje başlangıç aşamasındadır.
 
 #### Sonraki Adım
 
-- Nginx ile PHP-FPM arasındaki FastCGI bağlantısı yapılandırılacakktır. 
+- [x] Nginx ile PHP-FPM arasındaki FastCGI bağlantısı yapılandırılacakktır. 
+- İlk Front Contreller yapısını oluşturmak. 
+- Router tasarımına başlamak.
