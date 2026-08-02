@@ -22,8 +22,9 @@ Teknolojiler
    Docker Compose
    Composer
 
-Proje Yapısı
+# Proje Yapısı
 
+```text
 mvc/
 |
 |--docker/
@@ -45,7 +46,7 @@ mvc/
 |--.gitignore
 |
 |__README.md
-
+```
 
 Docker Dizinleri
 
