@@ -53,20 +53,20 @@ Servisler birbirlerine IP adresi ile değil, Docker servis adlarıyla erişecekt
 
 Dış dünyayaya yalnızca Nginx servisi açılacaktır:
 
-- Host portu: `8080``
-- Container portu: `80``
+- Host portu: `8080`
+- Container portu: `80`
 
 PHP-FPM ve PostgreSQL servisleri host üzerinde port yayınlamayacaktır.
 
 PHP kaynak kodu bind mount ile containerlara bağlanacaktır: 
 
-- Host: `./src``
-- Container: `/var/www/html``
+- Host: `./src`
+- Container: `/var/www/html`
 
 PostgreSQL verileri Docker tarafından yönetilen named volume içerisinde saklanacaktır: 
 
-- Volume: `postgres-data``
-- Container yolu: `/var/lib/postgresql``
+- Volume: `postgres-data`
+- Container yolu: `/var/lib/postgresql`
 
 Gerçek ortam değişkenleri `.env`dosyasında tutulacak ve Git deposnua eklenmeyecektir.
 

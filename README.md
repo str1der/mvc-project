@@ -1,4 +1,4 @@
-PHP MVC Öğrenme Projesi
+#PHP MVC Öğrenme Projesi
 
 Bu proje, modern PHP, nensene yönelimli programlama ve MVC mimarisi temel seviyeden başlayarak öğrenmek amacıyla oluşturulmuştur.
 
