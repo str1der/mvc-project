@@ -8,12 +8,12 @@ RUN apt-get update \
        curl \
        libpq-dev \
        libzip-dev \
-       libicu-dev
+       libicu-dev \
     && docker-php-ext-install \
        pdo \
        pdo_pgsql \
        intl \
-       zip
+       zip \
     && rm -rf /var/lib/apt/list/*
 
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer

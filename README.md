@@ -108,3 +108,31 @@ Proje başlangıç aşamasındadır.
    - Repository: `php`
    - Tag: `8.4-fpm`
    - Örnek: FROM php:8.4-fpm
+
+### Day 2
+
+#### Öğrendiklerim 
+
+- Docker Compose ile birden fazla servis birlikte tanımlanabilir.
+- Aynı Docker ağına bağlı servisler birbirlerine servis adlarıyla ulaşabilir.
+- Yalnızca dışarıdan erişilmesi gereken servisler host üzerinde port yayınkamalıdır.
+- PHP kaynak kodu için mount kullanılır.
+- PostgreSQL verileri için named volume kullanılır.
+- Gizli bilgiler `.env`dosyasında tutulur.
+- `docker-compose config`ile Compos dosyasının geçerliliği kontol edilebilir.
+- Nginx web kökü yalnızca `public/`dizini olmalıdır.
+- Nginx `location` blokları ilgili `server`blogunun içinde bulunmalıdır. 
+
+#### Kararlar
+
+- nginx, PHP-FPM  ve PostgreSQL ayrı containerlarda çalışacaktır.
+- Tüm servisler `mvc-net`ağına bağlanacaktır.
+- Dış dünyaya yalnızca Nginx açılacaktır. 
+- PostgreSQL host üzeride `5432` portu yayınlanmayacaktır. 
+- Nginx host üzerinde `8080`portundan erişilebilir olacaktır. 
+- PHP ayarları geliştirme ortamı için hosttan `bind mount`edilir.
+- İleride production imajında ise `php.ini`dosyası Dockerfile ile COPY etmek daha kontrollü olur.
+
+#### Sonraki Adım
+
+- Nginx ile PHP-FPM arasındaki FastCGI bağlantısı yapılandırılacakktır. 

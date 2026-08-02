@@ -35,3 +35,39 @@ Amaç:
 - Gereksiz layer oluşmasını önlemek.
 - Image boyurunu kontrol altında tutmak.
 - Docker cache mekanizmasından verimli yararlanmak.
+
+## ADR-004 - Docker Compose Servis Yapısı
+
+Uygulama geliştirme ortamı üç container üzerinden çalışacaktır: 
+
+- `nginx`
+- `php`
+- `postgrees`
+
+Tüm servisler `mvc-net` isimli ortak Docker ağında bağlanacaktır.
+
+Servisler birbirlerine IP adresi ile değil, Docker servis adlarıyla erişecektir:
+
+- Nginx, PHP-FPM servisine `php:9000`üzerinden erişir.
+- PHP, PostgreSQL servisine `postgres:5432` üzerinden erişir.
+
+Dış dünyayaya yalnızca Nginx servisi açılacaktır:
+
+- Host portu: `8080``
+- Container portu: `80``
+
+PHP-FPM ve PostgreSQL servisleri host üzerinde port yayınlamayacaktır.
+
+PHP kaynak kodu bind mount ile containerlara bağlanacaktır: 
+
+- Host: `./src``
+- Container: `/var/www/html``
+
+PostgreSQL verileri Docker tarafından yönetilen named volume içerisinde saklanacaktır: 
+
+- Volume: `postgres-data``
+- Container yolu: `/var/lib/postgresql``
+
+Gerçek ortam değişkenleri `.env`dosyasında tutulacak ve Git deposnua eklenmeyecektir.
+
+`.env.example` dosyası gerekli değişkenleri göstermek amacıyla Git deposunda tutulacaktır. 
