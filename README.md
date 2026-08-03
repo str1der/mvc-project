@@ -152,5 +152,24 @@ Proje başlangıç aşamasındadır.
 #### Sonraki Adım
 
 - [x] Nginx ile PHP-FPM arasındaki FastCGI bağlantısı yapılandırılacakktır. 
-- İlk Front Contreller yapısını oluşturmak. 
-- Router tasarımına başlamak.
+
+### Day 3 
+
+#### Öğrendiklerim
+- `namespace Core` diyerek `class Router`ile class oluşturursak `Core\Router`olur yani gruplayarak aynı isimde kullanım çakışmalarının önüne geçeriz.
+
+- `public function match(string $path): ?string ` buradaki `?string` bu metot ya string döndürür yada null demek için kullanılıyor. 
+
+- MMVC yapısında Router'ın görevi, gelen URL yolunu tanımlı route tablosuyla eşleştirmektir Router doğrudan yönlendirme yapmaz, çıktı üretmez ve HTTP 404 cevabı göndermez.
+
+
+#### Tamamlananlar
+- [x] İlk Front Contreller yapısını oluşturmak. 
+- [x] Router tasarımına başlamak.
+- [x] Namespace, property, constructor ve nullable dönüş tipi kullanıldı.
+- [x] Route eşleştirme mantığı oluşturuldu.
+
+#### Sonraki Adım
+- src/routes/web.php dosyasında route tablosu oluşturulacak.
+- public/index.php içinde Router nesnesi başlatılacak.
+- Eşleşen route sonucu veya 404 cevabı üretilecek.

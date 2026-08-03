@@ -2,17 +2,25 @@
 
 declare(strict_types=1);
 
+require __DIR__ . '/../core/Router.php';
+
+use Core\Router;
+
 $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
 
 $path = parse_url($requestUri, PHP_URL_PATH);
 
-if($path === '/'){
-    echo 'Welcome to the homepage!';
-}else if($path === '/about'){
-    echo 'This is the about page.';
-}else if($path === '/contact'){
-    echo 'This is the contact page.';
-}else{
+$routes = require __DIR__ . '/../routes/web.php';
+
+$route = new Router($routes);
+
+//var_dump($route);
+
+$matchedRoute = $route->match($path);
+
+if ($matchedRoute ===null)
+{
     http_response_code(404);
-    echo '404 Not Found';
+    echo "404 Not Found";
+    exit;
 }
