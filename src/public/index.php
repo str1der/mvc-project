@@ -3,6 +3,10 @@
 declare(strict_types=1);
 
 require __DIR__ . '/../core/Router.php';
+require __DIR__ . '/../app/Controllers/HomeController.php';
+require __DIR__ . '/../app/Controllers/ContactController.php';
+require __DIR__ . '/../app/Controllers/AboutController.php';
+
 
 use Core\Router;
 
@@ -24,3 +28,13 @@ if ($matchedRoute ===null)
     echo "404 Not Found";
     exit;
 }
+
+[$controllerName, $method] = explode('@', $matchedRoute,2);
+
+$controllerClass = 'App\\Controllers\\' . $controllerName;
+
+$controller = new $controllerClass();
+
+$response = $controller->$method();
+
+echo $response;
