@@ -71,3 +71,20 @@ PostgreSQL verileri Docker tarafından yönetilen named volume içerisinde sakla
 Gerçek ortam değişkenleri `.env`dosyasında tutulacak ve Git deposnua eklenmeyecektir.
 
 `.env.example` dosyası gerekli değişkenleri göstermek amacıyla Git deposunda tutulacaktır. 
+
+### ADR-0005 - Request sınıfı oluşturuldu
+
+**Karar**
+
+HTTP isteğiyle ilgili bilgiler `Application` içinde tutulmayacak.
+
+**Gerekçe**
+
+`Application` yalnızca uygulama akışını yönetecek.
+HTTP isteğinin detayları `Request` sınıfının sorumluluğunda olacak.
+
+**Sonuç**
+
+- `Application` daha sade hale geldi.
+- HTTP katmanı soyutlandı.
+- Test edilebilirlik arttı.

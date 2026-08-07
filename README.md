@@ -171,6 +171,25 @@ Proje başlangıç aşamasındadır.
 
 ### Day 4
 
+### Öğrendiklerim 
+Mimari yapıda önemli kararları öğrendik,  Application, Request Router görev ayrımı ve işleyişi öğrendik.
+
+```text
+Application
+    ↓
+Request'e sor:
+"İstenen path ne?"
+    ↓
+Request: "/about"
+    ↓
+Router'a sor:
+"/about neye eşleşiyor?"
+    ↓
+Router: "AboutController@index"
+    ↓
+Application controller'ı çalıştırır
+```
+
 #### Tamamlananlar
 - [x] src/routes/web.php dosyasında route tablosu oluşturulacak.
 - [x] public/index.php içinde Router nesnesi başlatılacak.
@@ -179,4 +198,7 @@ Proje başlangıç aşamasındadır.
 - [x] Dinamik autoload yazıldı.
 - [x] Namespace -> Dosya yolu dönüşümü kuruldu.
 - [x] is_file() ile güvenlik kontrolü ekklendi.
+
+
+
  

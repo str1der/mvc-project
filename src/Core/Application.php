@@ -7,16 +7,17 @@ namespace Core;
 final class Application
 {
     private Router $router;
+    private Request $request;
 
-    public function __construct(Router $router)
+    public function __construct(Router $router, Request $request)
     {
         $this->router = $router;
+        $this->request = $request;
     }
 
     public function run(): void
     {
-        $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
-        $path = parse_url($requestUri, PHP_URL_PATH);
+        $path = $this->request->path();
 
         $matchedRoute = $this->router->match($path);
 

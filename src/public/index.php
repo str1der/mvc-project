@@ -14,11 +14,14 @@ spl_autoload_register(function (string $className): void {
 
 use Core\Application;
 use Core\Router;
+use Core\Request;
 
 $routes = require __DIR__ . '/../routes/web.php';
 
 $router = new Router($routes);
 
-$app = new Application($router);
+$request = new Request();
+
+$app = new Application($router, $request);
 
 $app->run();
