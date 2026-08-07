@@ -169,7 +169,14 @@ Proje başlangıç aşamasındadır.
 - [x] Namespace, property, constructor ve nullable dönüş tipi kullanıldı.
 - [x] Route eşleştirme mantığı oluşturuldu.
 
-#### Sonraki Adım
-- src/routes/web.php dosyasında route tablosu oluşturulacak.
-- public/index.php içinde Router nesnesi başlatılacak.
-- Eşleşen route sonucu veya 404 cevabı üretilecek.
+### Day 4
+
+#### Tamamlananlar
+- [x] src/routes/web.php dosyasında route tablosu oluşturulacak.
+- [x] public/index.php içinde Router nesnesi başlatılacak.
+- [x] Eşleşen route sonucu veya 404 cevabı üretilecek.
+- [x] El ile require kaldırıldı.
+- [x] Dinamik autoload yazıldı.
+- [x] Namespace -> Dosya yolu dönüşümü kuruldu.
+- [x] is_file() ile güvenlik kontrolü ekklendi.
+ 

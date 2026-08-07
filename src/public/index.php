@@ -2,10 +2,17 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../core/Router.php';
-require __DIR__ . '/../app/Controllers/HomeController.php';
-require __DIR__ . '/../app/Controllers/ContactController.php';
-require __DIR__ . '/../app/Controllers/AboutController.php';
+spl_autoload_register(function (string $className): void {
+    $path = str_replace('\\', '/', $className);
+
+    $filePath = __DIR__ . '/../' . $path . '.php';
+
+    if(is_file($filePath))  require $filePath;
+
+});
+
+require __DIR__ . '/../Core/Router.php';
+
 
 
 use Core\Router;
