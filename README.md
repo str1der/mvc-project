@@ -243,6 +243,9 @@ Bir sınıfın görevi, her şeyi yapmak değil; kendi sorumluluğunu en iyi şe
 - [x] Özel 404 view sayfası oluşturuldu.
 - [x] Controller'dan View'a veri aktarımı eklendi.
 - [x] `extract()` ile View verilerine erişim sağlandı.
+- [x] `{title}` benzeri template ifadeleri compile ediliyor.
+- [x] Derlenmiş PHP `storage/cache/views` altında cache’leniyor.
+- [x] Template değişirse `filemtime()` ile yeniden compile ediliyor.
 
 #### Güncel Request Yaşam Döngüsü
 
