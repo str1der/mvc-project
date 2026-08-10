@@ -104,6 +104,7 @@ Framework çekirdeğinde şu bileşenler çalışır durumdadır:
 - Custom class autoloader
 
 Bir sonraki geliştirme hedefi View katmanı üzerine kendi template engine yapısını oluşturmaktır.
+```
 
 
 # PHP MVC Öğrenme Projesi
