@@ -1,2 +1,2 @@
-<h1>About</h1>
-<p>This is About Page</p>
+<h1>This is {title}.</h1>
+<p>Hakkımda: {description}</p>

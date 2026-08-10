@@ -10,6 +10,9 @@ final class AboutController
 
     public function index(): string
     {
-        return View::render('about');
+        return View::render('about', [
+            "title" => "About Page",
+            "description" => "I am a software developer."
+        ]);
     }
 }
