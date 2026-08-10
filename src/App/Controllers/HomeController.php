@@ -3,12 +3,16 @@
 declare(strict_types=1);
 
 namespace App\Controllers;
+use Core\View;
 
 final class HomeController 
 {
 
     public function index(): string
     {
-        return "This is Homepage";
+        return View::render('home', [
+            "title" => "Home Page",
+            "username"=>"Bora",
+        ]);
     }
 }

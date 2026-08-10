@@ -22,8 +22,11 @@ final class Application
         $matchedRoute = $this->router->match($path);
 
         if ($matchedRoute === null) {
-            http_response_code(404);
-            echo '404 Not Found';
+            $body = View::render('errors/404');
+
+            $response = new Response($body, 404);
+            $response->send();
+            
             return;
         }
 
@@ -33,8 +36,9 @@ final class Application
 
         $controller = new $controllerClass();
 
-        $response = $controller->$method();
+        $body = $controller->$method();
 
-        echo $response;
+        $response = new Response($body, 200);
+        $response->send();
     }
 }

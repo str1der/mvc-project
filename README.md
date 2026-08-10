@@ -88,11 +88,22 @@ docker compose logs -f
    Kullanılmayan soyutlamalar ve gereksiz sınıflar eklenmeyecek. 
 
 
-Durum
+```markdown
+## Durum
 
-Proje başlangıç aşamasındadır.
+Docker tabanlı geliştirme ortamı tamamlandı.
 
-İlk hedef, Nginx, PHP-FPM ve PostgreSQL containerlarını birbiri ile haberleştiği temel geliştirme ortamını oluşturmaktır. 
+Framework çekirdeğinde şu bileşenler çalışır durumdadır:
+
+- Application
+- Request
+- Response
+- Router
+- Controller
+- View
+- Custom class autoloader
+
+Bir sonraki geliştirme hedefi View katmanı üzerine kendi template engine yapısını oluşturmaktır.
 
 
 # PHP MVC Öğrenme Projesi
@@ -190,6 +201,13 @@ Router: "AboutController@index"
 Application controller'ı çalıştırır
 ```
 
+```text
+**Bugün öğrendiğim en önemli şey:**
+
+Bir sınıfın görevi, her şeyi yapmak değil; kendi sorumluluğunu en iyi şekilde yerine getirmektir.
+
+```
+
 #### Tamamlananlar
 - [x] src/routes/web.php dosyasında route tablosu oluşturulacak.
 - [x] public/index.php içinde Router nesnesi başlatılacak.
@@ -199,6 +217,52 @@ Application controller'ı çalıştırır
 - [x] Namespace -> Dosya yolu dönüşümü kuruldu.
 - [x] is_file() ile güvenlik kontrolü ekklendi.
 
+### Day 5
 
+#### Öğrendiklerim
+
+- `Request`, uygulamaya gelen HTTP isteğini temsil eder.
+- `Response`, uygulamadan istemciye gönderilecek HTTP cevabını temsil eder.
+- HTTP Response temel olarak status code, headers ve body bileşenlerinden oluşur.
+- Controller doğrudan `echo` yapmak yerine bir body üretir.
+- `Application`, Controller'dan gelen body ile uygun `Response` nesnesini oluşturur.
+- `View::render()` static kullanılarak View nesnesi oluşturmadan HTML üretilebilir.
+- `ob_start()` ve `ob_get_clean()` ile view dosyasının çıktısı string olarak alınabilir.
+- `include` edilen dosya, include edildiği scope içindeki değişkenlere erişebilir.
+- `extract($data)` ile associative array içindeki değerler view içerisinde değişken olarak kullanılabilir.
+
+#### Tamamlananlar
+
+- [x] `Request` sınıfı Application akışına dahil edildi.
+- [x] `Response` sınıfı oluşturuldu.
+- [x] HTTP 200 ve 404 cevapları `Response` üzerinden gönderilmeye başlandı.
+- [x] `View` sınıfı oluşturuldu.
+- [x] `Home`, `About` ve `Contact` view dosyaları oluşturuldu.
+- [x] Özel 404 view sayfası oluşturuldu.
+- [x] Controller'dan View'a veri aktarımı eklendi.
+- [x] `extract()` ile View verilerine erişim sağlandı.
+
+#### Güncel Request Yaşam Döngüsü
+
+```text
+Browser
+    ↓
+public/index.php
+    ↓
+Application::run()
+    ↓
+Request::path()
+    ↓
+Router::match()
+    ↓
+Controller
+    ↓
+View::render()
+    ↓
+HTML string
+    ↓
+Response
+    ↓
+Browser
 
  

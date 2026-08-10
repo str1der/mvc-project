@@ -88,3 +88,22 @@ HTTP isteğinin detayları `Request` sınıfının sorumluluğunda olacak.
 - `Application` daha sade hale geldi.
 - HTTP katmanı soyutlandı.
 - Test edilebilirlik arttı.
+
+## ADR-0006 - Response ve View sorumluluklarının ayrılması
+
+**Karar**
+
+HTTP cevabının gönderilmesi `Response` sınıfının, HTML üretimi ise `View` sınıfının sorumluluğunda olacaktır.
+
+**Gerekçe**
+
+`Application` sınıfının doğrudan HTTP status kodu ve çıktı üretmesi birden fazla sorumluluk taşımasına neden olmaktadır.
+
+Controller HTML üretmeyecek; gerekli View'ı çağırarak render edilmiş içeriği döndürecektir.
+
+**Sonuç**
+
+- HTTP response üretimi `Application` sınıfından ayrıldı.
+- HTML üretimi View katmanına taşındı.
+- 404 sayfası dahil tüm HTML çıktıları View üzerinden üretilebilir hale geldi.
+- Controller ile presentation katmanı arasındaki sorumluluk ayrımı netleşti.
