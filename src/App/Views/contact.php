@@ -1,2 +1,2 @@
-<h1>Contact</h1>
-<p>This is contact page.</p>
+<h1>This is {title}.</h1>
+<p>Contact Number: {telNo}</p>

@@ -231,6 +231,7 @@ Bir sınıfın görevi, her şeyi yapmak değil; kendi sorumluluğunu en iyi şe
 - `ob_start()` ve `ob_get_clean()` ile view dosyasının çıktısı string olarak alınabilir.
 - `include` edilen dosya, include edildiği scope içindeki değişkenlere erişebilir.
 - `extract($data)` ile associative array içindeki değerler view içerisinde değişken olarak kullanılabilir.
+- Kendi template engine tarafımı geliştirirken `{title}` ın `$title` dönüşümünü ve Cache kullanımını öğrendim.
 
 #### Tamamlananlar
 
