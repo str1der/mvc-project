@@ -12,8 +12,12 @@ final class View
 	
 
 	$cacheFile = __DIR__ . "/../storage/cache/views/" . hash('sha256', $templatePath) .'.php';
+	$compilerPath = __DIR__ . '/TemplateCompiler.php';
 
-	if(!is_file($cacheFile) || filemtime($cacheFile) < filemtime($templatePath)) {
+	if(!is_file($cacheFile) 
+		|| filemtime($cacheFile) < filemtime($templatePath) 
+		|| filemtime($cacheFile) < filemtime($compilerPath)
+	) {
 
 		$templateContent = file_get_contents($templatePath);
 
