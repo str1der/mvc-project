@@ -10,9 +10,9 @@ final class HomeController
 
     public function index(): string
     {
-        return View::render('home', [
-            "title" => "Home Page",
-            "username"=>"Bora",
+       return View::render('home', [
+            'title' => 'Synacle MVC',
+            'isAdmin' => true,
         ]);
     }
 }

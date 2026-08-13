@@ -8,16 +8,85 @@ final class TemplateCompiler
 {
     public static function compile(string $template): string
     {
+        $content = self::compileLayout($template);
+        $content = self::compileVariables($content);
+        $content = self::compileConditionals($content);
+        $content = self::compileLoops($content);  
+
+	    return $content;
+    }
+
+    private static function compileLayout(string $template): string
+    {
+        $content  = $template; 
+
+        $layout = null;
         
+            if( preg_match(
+                "/@extends\(\s*['\"](.*?)['\"]\s*\)/",
+                $content,
+                $matches
+            )){
+                $layout = $matches[1];
+            }
+
+        preg_match_all(
+            "/@section\(['\"](.*?)['\"]\)(.*?)@endsection/s",
+            $content,
+            $sectionMatches,
+            PREG_SET_ORDER
+        );
+
+        $sections = [];
+
+        foreach ($sectionMatches as $section) {
+            $sections[$section[1]] = trim($section[2]);
+        }
+
+        $content = preg_replace(
+            "/@section\(['\"](.*?)['\"]\)(.*?)@endsection/s",
+            '',
+            $content
+        );
+
+        if ($layout !== null) {
+            $layoutPath = __DIR__ . '/../App/Views/' . $layout . '.php';
+
+            $layoutContent = file_get_contents($layoutPath);
+
+            if ($layoutContent === false) {
+                throw new \RuntimeException(
+                    "Failed to read layout: $layoutPath"
+                );
+            }
+
+            $content = preg_replace_callback('/@yield\(\s*[\'"](.*?)[\'"]\s*\)/',
+                    function (array $matches) use ($sections): string {
+                $key = $matches[1];
+
+                return $sections[$key] ?? '';
+                    }, $layoutContent
+            );
+        }
+        
+        return $content;
+    }
+
+    private static function compileVariables(string $content): string
+    {
         $content = preg_replace_callback('/\{\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*\}/', 
             function (array $matches): string
             {
                 $key = $matches[1];
 
                 return "<?= htmlspecialchars(\$$key, ENT_QUOTES, 'UTF-8') ?>";
-            }, $template
+            }, $content
         );
+        return $content;
+    }
 
+    private static function compileConditionals(string $content): string
+    {
         $content = preg_replace(
                 '/@if\((.*?)\)/', 
                 '<?php if ($1): ?>',
@@ -42,7 +111,11 @@ final class TemplateCompiler
                 $content
             ); //else pattern
 
+        return $content;
+    }
 
+    private static function compileLoops(string $content): string
+    {
         $content = preg_replace(
             '/@foreach\((.*?)\)/',
             '<?php foreach ($1): ?>',
@@ -72,17 +145,13 @@ final class TemplateCompiler
             '/@while\((.*?)\)/',
             '<?php while ($1) : ?>',
             $content
-        );
+        ); // while Pattern
 
         $content = str_replace(
             '@endwhile',
             '<?php endwhile; ?>',
             $content
-        );
-
-
-
-
-	return $content ?? '';
+        ); // endwhile Pattern
+        return $content;
     }
 }

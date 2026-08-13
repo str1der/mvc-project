@@ -12,7 +12,7 @@ final class ContactController
     {
         return View::render('contact', [
             "title" => "Contact Page",
-            "telNo"=>"0531 835 31 38",
+            "telNo"=>"0531 835 31 37",
         ]);
     }
 }
