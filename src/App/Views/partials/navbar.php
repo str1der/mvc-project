@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Home Page</title>
-</head>
-<body>
-    <main>
-        <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -96,20 +89,10 @@
         </ul>
 
         <div class="navbar-user">
-            <!-- Sizin Template Engine'iniz buradaki <?= htmlspecialchars($userName, ENT_QUOTES, 'UTF-8') ?> ifadesini derleyecektir -->
-            <span class="welcome-text">Merhaba, <?= htmlspecialchars($userName, ENT_QUOTES, 'UTF-8') ?> 👋</span>
+            <!-- Sizin Template Engine'iniz buradaki { userName } ifadesini derleyecektir -->
+            <span class="welcome-text">Merhaba, { userName } 👋</span>
             
             <a href="/logout" class="logout-btn">Çıkış Yap</a>
         </div>
     </nav>
     <!-- Navbar Bitişi -->
-        <h1><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></h1>
-
-<?php if ($isAdmin): ?>
-    <p>Admin kullanıcısı</p>
-<?php else: ?>
-    <p>Normal kullanıcı</p>
-<?php endif; ?>
-    </main>
-</body>
-</html>

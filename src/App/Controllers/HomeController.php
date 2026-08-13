@@ -12,7 +12,8 @@ final class HomeController
     {
        return View::render('home', [
             'title' => 'Synacle MVC',
-            'isAdmin' => true,
+            'isAdmin' => false,
+            'userName' => 'Bora',
         ]);
     }
 }

@@ -9,6 +9,7 @@ final class TemplateCompiler
     public static function compile(string $template): string
     {
         $content = self::compileLayout($template);
+        $content = self::compileIncludes($content);
         $content = self::compileVariables($content);
         $content = self::compileConditionals($content);
         $content = self::compileLoops($content);  
@@ -153,5 +154,28 @@ final class TemplateCompiler
             $content
         ); // endwhile Pattern
         return $content;
+    }
+
+    private static function compileIncludes(string $content): string
+    {
+        $content = preg_replace_callback(
+            '/@include\(\s*[\'"](.*?)[\'"]\s*\)/',
+            function (array $matches): string {
+                $includeFile = $matches[1];
+
+                $includePath = __DIR__ . '/../App/Views/' . $includeFile . '.php';
+
+                $includeContent = file_get_contents($includePath);
+
+                if($includeContent === false)
+                {
+                    throw new \RuntimeException (
+                        "Failed to read include: $includePath"
+                    );
+
+                }return $includeContent;
+            }, $content
+        );
+        return $content ?? '';
     }
 }

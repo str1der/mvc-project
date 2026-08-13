@@ -5,6 +5,7 @@
 </head>
 <body>
     <main>
+        @include('partials/navbar')
         @yield('content')
     </main>
 </body>
