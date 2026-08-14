@@ -1,0 +1,11 @@
+{
+    "name": "synacle/mvc",
+    "description": "A lightweight MVC framework built for learning and practical PHP applications.",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "App\\": "App/"
+        }
+    }
+}
