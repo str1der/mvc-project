@@ -5,3 +5,4 @@
 .DS_Store
 *.log
 /src/vendor/
+/src/storage/cache/views/*

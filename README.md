@@ -270,4 +270,38 @@ Response
     ↓
 Browser
 
+
+### Day 5
+
+#### Öğrendiklerim
+
+* View katmanının HTML çıktısı üretmekten sorumlu olduğunu öğrendim.
+* Template dosyalarının PHP koduna derlenerek cache üzerinden çalıştırılabileceğini öğrendim.
+* Layout, section ve yield yapılarının template kalıtımı için nasıl kullanılabileceğini öğrendim.
+* Partial view yapısı için `@include` mantığını oluşturdum.
+* Composer'ın PSR-4 standardı ile namespace ve dizin eşlemesini nasıl yaptığını öğrendim.
+* Kendi yazdığım autoload mekanizması ile Composer PSR-4 autoload arasındaki ilişkiyi öğrendim.
+* PHP Session'ın HTTP requestleri arasında veri saklamasını ve session lifecycle mantığını öğrendim.
+
+#### Tamamlananlar
+
+* [x] `View` sınıfı oluşturuldu.
+* [x] `TemplateCompiler` oluşturuldu.
+* [x] `{ variable }` ifadeleri güvenli PHP çıktısına dönüştürüldü.
+* [x] `@if`, `@elseif`, `@else`, `@endif` desteği eklendi.
+* [x] `@foreach`, `@for` ve `@while` desteği eklendi.
+* [x] `@extends`, `@section` ve `@yield` desteği eklendi.
+* [x] `@include` desteği eklendi.
+* [x] Derlenmiş view cache sistemi oluşturuldu.
+* [x] Composer projeye eklendi.
+* [x] `Core\` ve `App\` namespace'leri PSR-4 ile yapılandırıldı.
+* [x] Elle yazılmış autoloader kaldırılarak Composer autoloader kullanılmaya başlandı.
+* [x] `Session` sınıfı oluşturuldu.
+* [x] Session `start`, `set`, `get`, `has`, `remove` ve `destroy` işlemleri eklendi.
+* [x] Session başlangıcı Application lifecycle'a bağlandı.
+
+#### Sonraki Adım
+
+* Flash session yapısının oluşturulması.
+* Middleware pipeline tasarımına başlanması.
  

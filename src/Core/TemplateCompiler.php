@@ -12,7 +12,7 @@ final class TemplateCompiler
         $content = self::compileIncludes($content);
         $content = self::compileVariables($content);
         $content = self::compileConditionals($content);
-        $content = self::compileLoops($content);  
+        $content = self::compileLoops($content);
 
 	    return $content;
     }

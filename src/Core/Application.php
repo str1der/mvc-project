@@ -16,7 +16,8 @@ final class Application
     }
 
     public function run(): void
-    {
+   {
+        Session::start();
         $path = $this->request->path();
 
         $matchedRoute = $this->router->match($path);
