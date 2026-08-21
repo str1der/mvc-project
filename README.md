@@ -101,9 +101,15 @@ Framework çekirdeğinde şu bileşenler çalışır durumdadır:
 - Router
 - Controller
 - View
-- Custom class autoloader
+- Template Compiler
+- Layout / Section / Yield
+- Partial Views / Include
+- Compiled View Cache
+- Composer / PSR-4 Autoloading
+- Session
+- Flash Session
 
-Bir sonraki geliştirme hedefi View katmanı üzerine kendi template engine yapısını oluşturmaktır.
+Bir sonraki geliştirme hedefi Middleware altyapısını oluşturmaktır.
 ```
 
 
@@ -269,7 +275,7 @@ HTML string
 Response
     ↓
 Browser
-
+```
 
 ### Day 5
 
@@ -300,8 +306,70 @@ Browser
 * [x] Session `start`, `set`, `get`, `has`, `remove` ve `destroy` işlemleri eklendi.
 * [x] Session başlangıcı Application lifecycle'a bağlandı.
 
+### Day 6
+
+#### Öğrendiklerim
+
+* Template engine içerisinde layout yapısının `@extends`, `@section` ve `@yield` ile oluşturulabileceğini öğrendim.
+* `@include` ile tekrar kullanılabilir partial view yapısı oluşturdum.
+* Template ifadelerinin önce derlenip ardından PHP cache dosyası üzerinden çalıştırılmasının mantığını öğrendim.
+* Composer'ın yalnızca paket yüklemek için değil, class autoloading için de kullanılabildiğini öğrendim.
+* PSR-4 ile namespace ve dizin yapısının standart şekilde eşleştirilebildiğini öğrendim.
+* Daha önce yazdığım `spl_autoload_register()` yapısının yaptığı işi Composer'ın PSR-4 standardıyla nasıl gerçekleştirdiğini öğrendim.
+* PHP Session'ın farklı HTTP requestleri arasında state tutmasını öğrendim.
+* Normal session verisi ile yalnızca geçici kullanım amaçlı flash session verisi arasındaki farkı öğrendim.
+* `return` çalıştıktan sonra metodun sonlandığını ve altındaki kodların çalışmadığını uygulamalı olarak gördüm.
+* Response gönderilmeden önce `var_dump()` gibi çıktıların `headers already sent` problemine neden olabileceğini öğrendim.
+
+#### Tamamlananlar
+
+* [x] TemplateCompiler conditional desteği geliştirildi.
+* [x] `@if`, `@elseif`, `@else` ve `@endif` desteği eklendi.
+* [x] `@foreach`, `@for` ve `@while` loop desteği eklendi.
+* [x] `@extends` layout desteği eklendi.
+* [x] `@section` ve `@yield` desteği eklendi.
+* [x] `@include` ile partial view desteği eklendi.
+* [x] Navbar partial yapısına taşındı.
+* [x] Composer projeye dahil edildi.
+* [x] `Core\` ve `App\` namespace'leri PSR-4 ile yapılandırıldı.
+* [x] Özel `spl_autoload_register()` kaldırıldı ve Composer autoloader kullanılmaya başlandı.
+* [x] `vendor/` Git takibinden çıkarıldı.
+* [x] `Session` sınıfı oluşturuldu.
+* [x] Session başlangıcı Application lifecycle'a bağlandı.
+* [x] `set()`, `get()`, `has()`, `remove()` ve `destroy()` işlemleri oluşturuldu ve test edildi.
+* [x] Session verisinin farklı HTTP requestleri arasında korunduğu doğrulandı.
+* [x] `flash()` ve `getFlash()` desteği oluşturuldu ve test edildi.
+
+#### Güncel Request Yaşam Döngüsü
+
+    Browser
+        ↓
+    public/index.php
+        ↓
+    Composer PSR-4 Autoloader
+        ↓
+    Application::run()
+        ↓
+    Session::start()
+        ↓
+    Request::path()
+        ↓
+    Router::match()
+        ↓
+    Controller
+        ↓
+    View::render()
+        ↓
+    TemplateCompiler
+        ↓
+    Compiled View Cache
+        ↓
+    Response
+        ↓
+    Browser
+
 #### Sonraki Adım
 
-* Flash session yapısının oluşturulması.
-* Middleware pipeline tasarımına başlanması.
- 
+* Middleware altyapısının tasarlanması.
+* Request lifecycle içerisindeki ortak işlemlerin middleware pipeline üzerinden çalıştırılması.
+* Session başlangıcının ileride `StartSessionMiddleware` içerisine taşınması.

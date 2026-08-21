@@ -1,2 +1,10 @@
-<h1>This is {title}.</h1>
-<p>Hakkımda: {description}</p>
+@extends('layouts/app')
+
+@section('title')
+Abouts Page
+@endsection
+
+@section('content')
+<h1>{ title }</h1>
+<p>{ description } </p>
+@endsection

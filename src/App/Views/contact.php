@@ -1,2 +1,10 @@
-<h1>This is {title}.</h1>
-<p>Contact Number: {telNo}</p>
+@extends('layouts/app')
+
+@section('title')
+Contact Page
+@endsection
+
+@section('content')
+<h1>{ title }</h1>
+<p>{ telNo } </p>
+@endsection

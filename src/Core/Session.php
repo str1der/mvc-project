@@ -39,5 +39,19 @@ final class Session
     public static function has(string $key): bool
     {
         return isset($_SESSION[$key]);
-    }   
+    }
+    
+    public static function flash(string $key, mixed $value): void
+    {
+        $_SESSION["_flash"][$key] = $value;
+    }
+
+    public static function getFlash(string $key): mixed
+    {
+        $message =  $_SESSION["_flash"][$key] ?? null;
+
+        unset ($_SESSION["_flash"][$key]);
+
+        return $message;
+    }
 }

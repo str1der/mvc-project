@@ -10,8 +10,7 @@ final class HomeController
 {
 
     public function index(): string
-    {
-        Session::destroy(); 
+    { 
        return View::render('home', [
             'title' => 'MVC Projects',
             'isAdmin' => false,
